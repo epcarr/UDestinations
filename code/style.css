@@ -1,3 +1,23 @@
-body {
-    background: #00539F;
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+}
+
+h2 {
+    color: #0057B7; /* UD Blue */
+    margin-bottom: 10px;
+}
+
+/* Centered map with 50% height */
+#map {
+    height: 50vh; /* 50% of the viewport height */
+    width: 80vw; /* 80% of the viewport width */
+    border: 5px solid #FFD700; /* UD Yellow */
+    border-radius: 10px;
 }
