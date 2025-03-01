@@ -1,1 +1,83 @@
-enter code here, delete this line
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Example</title>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGQ5ILoLfpgyXYvMJ2h4BgdvOD3HkATjg&callback=initMap&libraries=places"></script>
+    <style>
+        #map { height: 500px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h2>Google Maps with User Location & Nearby Places</h2>
+    <div id="map"></div>
+    <script>
+        let map;
+        let userMarker;
+        let service;
+        
+        function initMap() {
+            // Default location (New York)
+            let defaultLocation = { lat: 40.7128, lng: -74.0060 };
+
+            // Create a map centered at default location
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: defaultLocation
+            });
+
+            // Try to get the user's location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    let userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Update map center
+                    map.setCenter(userLocation);
+
+                    // Add a marker for the user's location
+                    userMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: "You are here!"
+                    });
+
+                    // Search for nearby restaurants
+                    findNearbyPlaces(userLocation, 'restaurant');
+                }, () => {
+                    console.error("Geolocation failed. Using default location.");
+                });
+            } else {
+                console.error("Geolocation not supported.");
+            }
+        }
+
+        function findNearbyPlaces(location, type) {
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: location,
+                radius: 2000, // 2 km radius
+                type: type
+            }, (results, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results.forEach(place => {
+                        addMarker(place);
+                    });
+                }
+            });
+        }
+
+        function addMarker(place) {
+            new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+                title: place.name
+            });
+        }
+    </script>
+</body>
+</html>
+
