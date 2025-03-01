@@ -25,6 +25,13 @@ function zoomToTrabant() {
     const trabantLocation = { lat: 39.6822, lng: -75.7541 };
     map.setCenter(trabantLocation);
     map.setZoom(18);
+    
+    const trabantMarker = new google.maps.Marker({
+        position: trabantLocation,
+        map: map,
+        title: "Trabant Student Center"
+    });
+    savedMarkers.push(trabantMarker);
 }
 
 function addSavedMarker(location) {
