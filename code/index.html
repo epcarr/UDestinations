@@ -6,18 +6,19 @@
     <title>University of Delaware - Google Map</title>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGQ5ILoLfpgyXYvMJ2h4BgdvOD3HkATjg&callback=initMap"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="../circle-ud.png">
 </head>
 
 <body>
     <h2>University of Delaware - Google Map</h2>
-    <div id="map"></div>
-
+    <div id="map"></div> <!-- Map container MUST be before the script -->
+    
     <div id="taskbar">
         <button class="taskbar-button" onclick="zoomIn()">Zoom In</button>
         <button class="taskbar-button" onclick="zoomOut()">Zoom Out</button>
         <button class="taskbar-button" onclick="centerMap()">Center Map</button>
+        <button class="taskbar-button" onclick="showSavedLocations()">Show Saved Locations</button>
     </div>
+
+    <script src="script.js"></script> <!-- Script is at the end -->
 </body>
-<script src="script.js"></script>
 </html>
