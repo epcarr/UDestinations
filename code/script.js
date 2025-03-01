@@ -1,46 +1,68 @@
 let map;
+let savedMarkers = [];
 
-        function initMap() {
-            // University of Delaware (Newark Campus) coordinates
-            const universityLocation = { lat: 39.678, lng: -75.7526 };
+function initMap() {
+    console.log("Initializing map..."); // Debugging log
 
-            // Define the campus boundary (approximate bounds)
-            const campusBounds = {
-                north: 39.6900,
-                south: 39.6650,
-                east: -75.7400,
-                west: -75.7650
-            };
+    const universityLocation = { lat: 39.678, lng: -75.7526 };
+    
+    map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: universityLocation
+    });
 
-            // Create the map centered at the university
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 15, // Zoom level
-                center: universityLocation,
-                restriction: {
-                    latLngBounds: campusBounds, // Restrict to campus bounds
-                    strictBounds: true // Prevent users from moving outside
-                }
-            });
+    new google.maps.Marker({
+        position: universityLocation,
+        map: map,
+        title: "University of Delaware"
+    });
 
-            // Add a marker at the university
-            new google.maps.Marker({
-                position: universityLocation,
-                map: map,
-                title: "University of Delaware"
-            });
-        }
+    // Add event listener to place custom markers on click
+    map.addListener("click", (event) => {
+        addSavedMarker(event.latLng);
+    });
+}
 
-        // Function to zoom in
-        function zoomIn() {
-            let currentZoom = map.getZoom();
-            map.setZoom(currentZoom + 1);
-        }
+function addSavedMarker(location) {
+    console.log("Adding marker at:", location); // Debugging log
 
-        // Function to zoom out
-        function zoomOut() {
-            let currentZoom = map.getZoom();
-            map.setZoom(currentZoom - 1);
-        }
+    const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: "Saved Place",
+        draggable: true
+    });
+
+    savedMarkers.push(marker);
+
+    const placeName = prompt("Enter a name for this location:", "Saved Place");
+    if (placeName) {
+        marker.setTitle(placeName);
+    }
+}
+
+function zoomIn() {
+    if (map) {
+        map.setZoom(map.getZoom() + 1);
+    }
+}
+
+function zoomOut() {
+    if (map) {
+        map.setZoom(map.getZoom() - 1);
+    }
+}
+
+function centerMap() {
+    if (map) {
+        map.setCenter({ lat: 39.678, lng: -75.7526 });
+    }
+}
+
+function showSavedLocations() {
+    let locations = savedMarkers.map(marker => marker.getTitle()).join("\n");
+    alert("Saved Locations:\n" + (locations || "No locations saved yet."));
+}
 
         // Function to center the map on the university location
         function centerMap() {
