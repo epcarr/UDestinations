@@ -21,13 +21,14 @@ html, body {
 
 /* Increased map size */
 #map {
-    height: 70vh; /* Ensures visibility */
+    height: 70vh;
     width: 70vw;
     border: 5px solid #FFD700;
     border-radius: 10px;
     position: relative;
-    display: block; /* Ensure map is visible */
+    display: block;
 }
+
 
 /* UD Logo Button */
 .logo{
