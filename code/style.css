@@ -32,6 +32,27 @@ h2 {
     display: block; /* Ensure map is visible */
 }
 
+/* UD Logo Button */
+#Logo{
+    position: fixed; /* Keep it on the right even when scrolling */
+    top: 20px; /* Position from the top */
+    left: 30px; /* Position from the left */
+    border: none;
+    border-radius: 50%; /* Circle */
+    width: 10px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 2; /* Ensure logo is above map */
+}
+
+.logo-button{
+    max-width: 150px;
+    max-height: 150px;
+    width:100px;
+    height:75px;
+}
+
+
 /* Zoom control panel */
 #taskbar {
     position: fixed;
