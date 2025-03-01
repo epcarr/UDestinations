@@ -10,23 +10,24 @@
 </head>
 
 <body>
-    <div class = 'header'>
+    <div class='header'>
         <div class="logo">
             <a href="https://www.udel.edu/"><img src="../code/blue_hen.png" class="logo-button"></a>
         </div>
-        <div class = 'header-name'>
-            <a href = "https://www.udel.edu/"><img src = "../code/udel.jpg" class = "name-img"></a>
+        <div class='header-name'>
+            <a href="https://www.udel.edu/"><img src="../code/udel.jpg" class="name-img"></a>
         </div>
     </div>
-    <div id="map"></div> <!-- Map container MUST be before the script -->
+    <div id="map"></div>
     
     <div id="taskbar">
         <button class="taskbar-button" onclick="zoomIn()">Zoom In</button>
         <button class="taskbar-button" onclick="zoomOut()">Zoom Out</button>
         <button class="taskbar-button" onclick="centerMap()">Center Map</button>
         <button class="taskbar-button" onclick="showSavedLocations()">Show Saved Locations</button>
+        <button class="taskbar-button" onclick="zoomToTrabant()">Trabant Student Center</button>
     </div>
 
-    <script src="script.js"></script> <!-- Script is at the end -->
+    <script src="script.js"></script>
 </body>
 </html>
