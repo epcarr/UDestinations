@@ -2,8 +2,7 @@ let map;
 let savedMarkers = [];
 
 function initMap() {
-    console.log("Initializing map..."); // Debugging log
-
+    console.log("Initializing map...");
     const universityLocation = { lat: 39.678, lng: -75.7526 };
     
     map = new google.maps.Map(document.getElementById("map"), {
@@ -17,22 +16,25 @@ function initMap() {
         title: "University of Delaware"
     });
 
-    // Add event listener to place custom markers on click
     map.addListener("click", (event) => {
         addSavedMarker(event.latLng);
     });
 }
 
-function addSavedMarker(location) {
-    console.log("Adding marker at:", location); // Debugging log
+function zoomToTrabant() {
+    const trabantLocation = { lat: 39.6822, lng: -75.7541 };
+    map.setCenter(trabantLocation);
+    map.setZoom(18);
+}
 
+function addSavedMarker(location) {
+    console.log("Adding marker at:", location);
     const marker = new google.maps.Marker({
         position: location,
         map: map,
         title: "Saved Place",
         draggable: true
     });
-
     savedMarkers.push(marker);
 
     const placeName = prompt("Enter a name for this location:", "Saved Place");
@@ -40,11 +42,6 @@ function addSavedMarker(location) {
         marker.setTitle(placeName);
     }
 }
-
-// Redirect to UD Website
-function goToUDWebsite() {
-    window.location.href = "https://www.udel.edu";
-        }
 
 function zoomIn() {
     if (map) {
