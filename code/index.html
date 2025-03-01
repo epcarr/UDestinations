@@ -5,131 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University of Delaware - Google Map</title>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGQ5ILoLfpgyXYvMJ2h4BgdvOD3HkATjg&callback=initMap"></script>
-    <style>
-        /* Full-screen background with UD colors */
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(to bottom, #0057B7 50%, #FFD700 50%);
-        }
-
-        h2 {
-            color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px 20px;
-            border-radius: 8px;
-            position: absolute;
-            top: 20px;
-        }
-
-        /* Centered map with 50% height */
-        #map {
-            height: 50vh; /* 50% of the viewport height */
-            width: 70vw; /* 70% of the viewport width */
-            border: 5px solid #FFD700; /* UD Yellow */
-            border-radius: 10px;
-        }
-
-        /* Right-side taskbar */
-        #taskbar {
-            position: absolute;
-            top: 20%;
-            right: 0;
-            width: 200px;
-            height: 60%;
-            background: linear-gradient(to top, #0057B7, #FFD700);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            border-radius: 10px 0 0 10px;
-            box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .taskbar-button {
-            width: 150px;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #FFD700;
-            border: none;
-            border-radius: 8px;
-            color: #0057B7;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .taskbar-button:hover {
-            background-color: #ffcc00;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="../components/images/circle-ud.png">
 </head>
+
 <body>
     <h2>University of Delaware - Google Map</h2>
     <div id="map"></div>
 
-    <!-- Taskbar -->
     <div id="taskbar">
         <button class="taskbar-button" onclick="zoomIn()">Zoom In</button>
         <button class="taskbar-button" onclick="zoomOut()">Zoom Out</button>
         <button class="taskbar-button" onclick="centerMap()">Center Map</button>
     </div>
-
-    <script>
-        let map;
-
-        function initMap() {
-            // University of Delaware (Newark Campus) coordinates
-            const universityLocation = { lat: 39.678, lng: -75.7526 };
-
-            // Define the campus boundary (approximate bounds)
-            const campusBounds = {
-                north: 39.6900,
-                south: 39.6650,
-                east: -75.7400,
-                west: -75.7650
-            };
-
-            // Create the map centered at the university
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 15, // Zoom level
-                center: universityLocation,
-                restriction: {
-                    latLngBounds: campusBounds, // Restrict to campus bounds
-                    strictBounds: true // Prevent users from moving outside
-                }
-            });
-
-            // Add a marker at the university
-            new google.maps.Marker({
-                position: universityLocation,
-                map: map,
-                title: "University of Delaware"
-            });
-        }
-
-        // Function to zoom in
-        function zoomIn() {
-            let currentZoom = map.getZoom();
-            map.setZoom(currentZoom + 1);
-        }
-
-        // Function to zoom out
-        function zoomOut() {
-            let currentZoom = map.getZoom();
-            map.setZoom(currentZoom - 1);
-        }
-
-        // Function to center the map on the university location
-        function centerMap() {
-            const universityLocation = { lat: 39.678, lng: -75.7526 };
-            map.setCenter(universityLocation);
-        }
-    </script>
 </body>
+<script src="script.js"></script>
 </html>
