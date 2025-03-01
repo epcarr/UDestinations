@@ -6,16 +6,19 @@
     <title>University of Delaware - Google Map</title>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGQ5ILoLfpgyXYvMJ2h4BgdvOD3HkATjg&callback=initMap"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="../code/blue_hen.png">
+    <link rel="icon" href="../components/blue_hen.png">
 </head>
 
 <body>
-    <h2>University of Delaware</h2>
-    <div id="map"></div> <!-- Map container MUST be before the script -->
-
-    <div id="Logo">
-        <a href="https://www.udel.edu/"><img src="../code/blue_hen.png" class="logo-button"></a>
+    <div class = 'header'>
+        <div class="logo">
+            <a href="https://www.udel.edu/"><img src="../components/blue_hen.png" class="logo-button"></a>
+        </div>
+        <div class = 'header-name'>
+            <a href = "https://www.udel.edu/"><img src = "../components/udel.jpg" class = "name-img"></a>
+        </div>
     </div>
+    <div id="map"></div> <!-- Map container MUST be before the script -->
     
     <div id="taskbar">
         <button class="taskbar-button" onclick="zoomIn()">Zoom In</button>
