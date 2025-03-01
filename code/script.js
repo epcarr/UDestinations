@@ -41,6 +41,11 @@ function addSavedMarker(location) {
     }
 }
 
+// Redirect to UD Website
+function goToUDWebsite() {
+    window.location.href = "https://www.udel.edu";
+        }
+
 function zoomIn() {
     if (map) {
         map.setZoom(map.getZoom() + 1);
