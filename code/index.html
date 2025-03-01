@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University of Delaware - Custom Styled Map</title>
+    <title>University of Delaware - Google Map</title>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGQ5ILoLfpgyXYvMJ2h4BgdvOD3HkATjg&callback=initMap"></script>
     <style>
-        /* Full-screen setup */
+        /* Full-screen background with UD colors */
         html, body {
             height: 100%;
             margin: 0;
@@ -15,12 +15,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #f8f9fa;
+            background: linear-gradient(to bottom, #0057B7 50%, #FFD700 50%);
         }
 
         h2 {
-            color: #0057B7; /* UD Blue */
-            margin-bottom: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 8px;
         }
 
         /* Centered map with 50% height */
@@ -33,7 +35,7 @@
     </style>
 </head>
 <body>
-    <h2>University of Delaware - Custom Google Map</h2>
+    <h2>University of Delaware - Google Map</h2>
     <div id="map"></div>
 
     <script>
@@ -49,18 +51,6 @@
                 west: -75.7650
             };
 
-            // Custom Map Styles (Blue & Yellow Theme)
-            const udMapStyle = [
-                { elementType: "geometry", stylers: [{ color: "#fff5cc" }] }, // Soft Yellow land
-                { elementType: "labels.text.stroke", stylers: [{ color: "#ffffff" }] },
-                { elementType: "labels.text.fill", stylers: [{ color: "#0057B7" }] }, // UD Blue text
-                { featureType: "water", stylers: [{ color: "#72A0C1" }] }, // Soft Blue water
-                { featureType: "road", elementType: "geometry", stylers: [{ color: "#0057B7" }] }, // Blue roads
-                { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
-                { featureType: "poi", elementType: "geometry", stylers: [{ color: "#FFE066" }] }, // Light Yellow POIs
-                { featureType: "poi.park", stylers: [{ color: "#FFEE99" }] } // Softer Yellow parks
-            ];
-
             // Create the map centered at the university
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 15, // Zoom level
@@ -68,8 +58,7 @@
                 restriction: {
                     latLngBounds: campusBounds, // Restrict to campus bounds
                     strictBounds: true // Prevent users from moving outside
-                },
-                styles: udMapStyle // Apply custom UD color theme
+                }
             });
 
             // Add a marker at the university
@@ -78,7 +67,3 @@
                 map: map,
                 title: "University of Delaware"
             });
-        }
-    </script>
-</body>
-</html>
