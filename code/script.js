@@ -63,9 +63,3 @@ function showSavedLocations() {
     let locations = savedMarkers.map(marker => marker.getTitle()).join("\n");
     alert("Saved Locations:\n" + (locations || "No locations saved yet."));
 }
-
-        // Function to center the map on the university location
-        function centerMap() {
-            const universityLocation = { lat: 39.678, lng: -75.7526 };
-            map.setCenter(universityLocation);
-        }
