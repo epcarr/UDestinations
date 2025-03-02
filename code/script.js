@@ -90,10 +90,6 @@ function centerMap() {
     map.setZoom(15);
 }
 
-// Function to show the names of all saved locations (markers added by the user)
-function showSavedLocations() {
-    let locations = savedMarkers.map(marker => marker.getTitle()).join("\n");
-    alert("Saved Locations:\n" + (locations || "No locations saved yet."));
 }
 
 // Function to add a saved marker on the map
