@@ -67,7 +67,7 @@ html, body {
     right: 0;
     transform: translateY(-50%);
     width: 200px;
-    background: linear-gradient(to top, #0057B7, #FFD700);
+    background: #FFD700;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,17 +81,17 @@ html, body {
     width: 150px;
     padding: 10px;
     margin: 10px 0;
-    background-color: #FFD700;
+    background-color: #0057B7;
     border: none;
     border-radius: 8px;
-    color: #0057B7;
+    color: #ffcc00;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .taskbar-button:hover {
-    background-color: #ffcc00;
+    background-color: #0057B7;
 }
 
 /* Dropdown button styles */
@@ -104,17 +104,17 @@ html, body {
     width: 150px;
     padding: 10px;
     margin: 10px 0;
-    background-color: #FFD700;
+    background-color: #0057B7;
     border: none;
     border-radius: 8px;
-    color: #0057B7;
+    color: #ffcc00;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .dropdown-btn:hover {
-    background-color: #ffcc00;
+    background-color: #0057B7;
 }
 
 .dropdown-content {
