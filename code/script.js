@@ -27,7 +27,7 @@ const buildingEvents = {
     "Mitchell Hall": [],
     "Morris Library": ["Honestly Abe","Transcendent Resilience"],
     "Old College": [["Colors of Old College",'3/2/25','']],
-    "Penny Hall": ["Minerals from China and India","Scupltural Cooper Saved from the Smelter",],
+    "Penny Hall": ["Minerals from China and India","Scupltural Cooper Saved from the Smelter"],
     "Pearson Hall": [],
     "Purnell Hall": [],
     "Perkins": [["Open Arcade", " 3/3/25 - 3/4/25 ","12-11pm"], ["Geek Week","3/4/25","7pm"], ["Movie: Star Trek", "3/5/25", "8:30-10:30pm"]],
@@ -46,22 +46,28 @@ const buildingEvents = {
 //Building events
 function buildingEvent(currentBuilding) {
     let eventList = buildingEvents[currentBuilding];
+    Events = `Events in: ${currentBuilding}`;
+
+    let eventDetails = '';
 
     if (!eventList || eventList.length === 0) {
-        Events = `No events in: ${currentBuilding}`;
+        eventDetails = '<li>No events available</li>';
+    } else if (Array.isArray(eventList[0])) {
+        eventDetails = eventList.map(event => `<li>${event[0]} - ${event[1]} (${event[2]})</li>`).join('');
     } else {
-        Events = `Events in: ${currentBuilding}`;
+        eventDetails = eventList.map(event => `<li>${event}</li>`).join('');
     }
 
-    let eventDetails = eventList.length > 0
-        ? eventList.map(event => `<li>${event[0]} - ${event[1]} (${event[2]})</li>`).join('')
-        : '<li>No events available</li>';
-
-    document.getElementById("events-tab").innerHTML = `
-        <h2>${Events}</h2>
-        <ul>${eventDetails}</ul>`;
+    // Update the events-tab content
+    const eventsTab = document.getElementById("events-tab");
+    if (eventsTab) {
+        eventsTab.innerHTML = `
+            <h2>${Events}</h2>
+            <ul>${eventDetails}</ul>`;
+    } else {
+        console.error("events-tab element not found!");
+    }
 }
-
 
 function initMap() {
     console.log("Initializing map...");
@@ -155,10 +161,7 @@ function addDropdownOptions() {
         };
         dropdown.appendChild(option);
     });
-
-
 }
-
 
 // Function to center the map to the University of Delaware
 function centerMap() {
@@ -168,5 +171,7 @@ function centerMap() {
 }
 
 // Call this function after the page loads
-addDropdownOptions()
-document.addEventListener("DOMContentLoaded", addDropdownOptions);
+document.addEventListener("DOMContentLoaded", () => {
+    addDropdownOptions();
+    initMap();
+});
