@@ -17,6 +17,7 @@ html, body {
     align-items: center;
     height: 100px;
     margin-bottom: 2%;
+    margin-top: 10%;
 }
 
 /* Increased map size */
@@ -31,10 +32,7 @@ html, body {
 
 
 /* UD Logo Button */
-.logo{
-    position: fixed; /* Keep it on the right even when scrolling */
-    top: 20px; /* Position from the top */
-    left: 30px; /* Position from the left */
+.logo {
     border: none;
     border-radius: 50%; /* Circle */
     width: 10px;
@@ -43,11 +41,15 @@ html, body {
     z-index: 2; /* Ensure logo is above map */
 }
 
-.logo-button{
+.logo-button {
     max-width: 150px;
     max-height: 150px;
     width:100px;
     height:75px;
+    position: fixed;
+    top: 20px; /* Position from the top */
+    left: 30px; /* Position from the left */
+
 }
 
 .name-img {
@@ -65,7 +67,7 @@ html, body {
     right: 0;
     transform: translateY(-50%);
     width: 200px;
-    background:  #FFD700;
+    background: linear-gradient(to top, #0057B7, #FFD700);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,17 +81,17 @@ html, body {
     width: 150px;
     padding: 10px;
     margin: 10px 0;
-    background-color: #0057a4;
+    background-color: #FFD700;
     border: none;
     border-radius: 8px;
-    color: #ffffff;
+    color: #0057B7;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .taskbar-button:hover {
-    background-color: #0057a4;
+    background-color: #ffcc00;
 }
 
 /* Dropdown button styles */
@@ -102,10 +104,10 @@ html, body {
     width: 150px;
     padding: 10px;
     margin: 10px 0;
-    background-color: #0057a4;
+    background-color: #FFD700;
     border: none;
     border-radius: 8px;
-    color: #ffffff;
+    color: #0057B7;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -152,7 +154,30 @@ body {
     overflow-x: hidden;
 }
 
+.event-map-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.events-tab {
+    background: red;
+    color: yellow;
+    width: 25%;
+    height: 30%;
+}
+
 /* Optionally, add some spacing to the map if needed */
 #map {
     margin-bottom: 10%;
+}
+
+.udes-box {
+    background: black;
+}
+
+.udest {
+    color: yellow;
+    font-size: 4em;
+    font-family: copperplate;
+    -webkit-text-stroke: 4px #0057a4;
 }
