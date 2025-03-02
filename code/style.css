@@ -197,3 +197,30 @@ body {
     border-radius: 5px;
     /* Remove border-radius to make the corners square */
 }
+
+#student-health {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #0066cc; /* Text color (blue link) */
+    text-decoration: none; /* Removes underline */
+    border: 2px solid #FFD700; /* Yellow border */
+    padding: 5px 10px; /* Adds some space around the text */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #FFD700; /* Yellow background inside the border */
+    display: inline-block; /* Makes the link behave like a block but still inline */
+}
+
+#student-health:hover {
+    text-decoration: underline; /* Adds underline on hover */
+    color: #fff; /* Changes text color to white when hovered */
+    background-color: #f4a300; /* Changes background to a darker yellow on hover */
+}
+
+#map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center the elements horizontally */
+    justify-content: center; /* Center them vertically */
+} 
