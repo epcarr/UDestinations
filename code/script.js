@@ -1,6 +1,67 @@
 let map;
 let savedMarkers = [];
 let currentBuildingMarker = null;  // Variable to store the current marker for the building
+let building = ''; // Variable to store the building name
+let Events = ''; // Variable to store the events in the building
+
+//EVENTS FOR BUILDINGS
+const buildingEvents = {
+    "Alison Hall": [],
+    "Alison Hall West": [],
+    "Brown Lab": [],
+    "Bob Carpenter Center": [],
+    "Colburn Lab": [],
+    "Carpenter Sports Building": [['ELI Basketball Shootaround','3/6/25','2-3:30pm'], ['Top Hen Challenge - 500m row','3/10/25','6am-11pm']],
+    "Drake Hall": [],
+    "Ewing": [],
+    "DuPont Hall": [],
+    "Evans Hall": [["Microelectriconics Community Science Days","3/22/25","9:15am-12:30pm"]],
+    "Ewing Hall": [],
+    "Gore Hall": [['Heaven Can You Hear Me?','3/3/25','7pm-9pm'],["Prohibited Substances","3/6/25","12:40-1:35pm"]],
+    "Harker ISE Lab": [],
+    "Hullihen Hall": [],
+    "Kirkbride Lecture Hall": [],
+    "Lerner Hall": [],
+    "McDowell Hall": [],
+    "Memorial Hall": [['Gobsmacked!','3/4/25','5:30pm-6:45pm'],['Documentary Poetry','3/13/25','4pm-6pm']],
+    "Mitchell Hall": [],
+    "Morris Library": ["Honestly Abe","Transcendent Resilience"],
+    "Old College": [["Colors of Old College",'3/2/25','']],
+    "Penny Hall": ["Minerals from China and India","Scupltural Cooper Saved from the Smelter",],
+    "Pearson Hall": [],
+    "Purnell Hall": [],
+    "Perkins": [["Open Arcade", " 3/3/25 - 3/4/25 ","12-11pm"], ["Geek Week","3/4/25","7pm"], ["Movie: Star Trek", "3/5/25", "8:30-10:30pm"]],
+    "Purnell Hall": [],
+    "Recitation Hall": [["Colors, Land, and Building","3/2/25",""]],
+    "Robinson Hall": [],
+    "Sharp Lab": [["CIS Seminar: Wenjing Lou, Ph.D.","3/14/25","11:30am"],["CIS Seminar: Adam Perer, Ph.D.","3/21/25","11:30am"]],
+    "Smith Hall": [],
+    "Spencer Lab": [],
+    "Townsend Hall": [],
+    "Trabant": [["An Evening with John Cho","3/3/25","5pm"],["Lego Fest","3/4/25", "11am to 2pm"],["Band of the Bands","3/8/25","10:00pm-1:00am"]],
+    "Willard Hall": [],
+    "Wolf Hall": []
+};
+
+//Building events
+function buildingEvent(currentBuilding) {
+    let eventList = buildingEvents[currentBuilding];
+
+    if (!eventList || eventList.length === 0) {
+        Events = `No events in: ${currentBuilding}`;
+    } else {
+        Events = `Events in: ${currentBuilding}`;
+    }
+
+    let eventDetails = eventList.length > 0
+        ? eventList.map(event => `<li>${event[0]} - ${event[1]} (${event[2]})</li>`).join('')
+        : '<li>No events available</li>';
+
+    document.getElementById("events-tab").innerHTML = `
+        <h2>${Events}</h2>
+        <ul>${eventDetails}</ul>`;
+}
+
 
 function initMap() {
     console.log("Initializing map...");
@@ -24,9 +85,9 @@ function initMap() {
 
 // Function to clear the previous marker and add a new one for the selected building
 function visitBuilding(buildingName, location) {
-    // If there's already a marker, remove it
+    // Remove the previous marker
     if (currentBuildingMarker) {
-        currentBuildingMarker.setMap(null);  // Remove the previous marker from the map
+        currentBuildingMarker.setMap(null);
     }
 
     // Create a new marker for the selected building
@@ -39,6 +100,9 @@ function visitBuilding(buildingName, location) {
     // Center the map on the selected building and zoom in
     map.setCenter(location);
     map.setZoom(18);
+
+    // Update the events list
+    buildingEvent(buildingName);
 }
 
 const buildings = {
@@ -79,14 +143,22 @@ const buildings = {
 // Update the dropdown options with a click event for each building
 function addDropdownOptions() {
     const dropdown = document.getElementById("dropdown-content");
+    dropdown.innerHTML = "";  // Clear previous options
+
     Object.keys(buildings).forEach(building => {
         const option = document.createElement("a");
         option.href = "#";
         option.innerText = building;
-        option.onclick = () => visitBuilding(building, buildings[building]);
+        option.onclick = (event) => {
+            event.preventDefault();  // Prevent page jump
+            visitBuilding(building, buildings[building]);  // Call visitBuilding
+        };
         dropdown.appendChild(option);
     });
+
+
 }
+
 
 // Function to center the map to the University of Delaware
 function centerMap() {
@@ -96,4 +168,5 @@ function centerMap() {
 }
 
 // Call this function after the page loads
-window.onload = addDropdownOptions;
+addDropdownOptions()
+document.addEventListener("DOMContentLoaded", addDropdownOptions);
