@@ -71,17 +71,24 @@ function buildingEvent(currentBuilding) {
 function initMap() {
     console.log("Initializing map...");
     const universityLocation = { lat: 39.678, lng: -75.7526 };
+     // Define the campus boundary (approximate bounds)
+     const campusBounds = {
+        north: 39.6900,
+        south: 39.6650,
+        east: -75.7400,
+        west: -75.7650
+    };
+
     
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
-        center: universityLocation
+        center: universityLocation,
+        restriction: {
+            latLngBounds: campusBounds, // Restrict to campus bounds
+            strictBounds: true // Prevent users from moving outside
+        }
     });
 
-    new google.maps.Marker({
-        position: universityLocation,
-        map: map,
-        title: "University of Delaware"
-    });
 
     infoWindow = new google.maps.InfoWindow();
 
@@ -193,6 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
     addDropdownOptions();
     initMap();
 });
+
+
 
 // Coordinates for UD Health Services
 const udHealthServices = { lat: 39.6753, lng: -75.7517 };
