@@ -181,3 +181,19 @@ body {
     font-family: copperplate;
     -webkit-text-stroke: 4px #0057a4;
 }
+
+.event-map-container {
+    display: flex;
+    flex-direction: row;  /* Move the events box to the left */
+}
+
+.events-tab {
+    background: rgb(248, 248, 246); /* White */
+    color: #0057a4; /* Blue */
+    width: 25%;
+    height: 30%;
+    border: 5px solid #FFD700; /* Yellow square border */
+    padding: 10px;
+    border-radius: 5px;
+    /* Remove border-radius to make the corners square */
+}
