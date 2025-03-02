@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University of Delaware - Google Map</title>
+    <title>University of Delaware</title>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGQ5ILoLfpgyXYvMJ2h4BgdvOD3HkATjg&callback=initMap"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="../code/blue_hen.png">
@@ -21,11 +21,15 @@
     <div id="map"></div>
     
     <div id="taskbar">
-        <button class="taskbar-button" onclick="zoomIn()">Zoom In</button>
-        <button class="taskbar-button" onclick="zoomOut()">Zoom Out</button>
         <button class="taskbar-button" onclick="centerMap()">Center Map</button>
         <button class="taskbar-button" onclick="showSavedLocations()">Show Saved Locations</button>
-        <button class="taskbar-button" onclick="zoomToTrabant()">Trabant Student Center</button>
+        <!-- Dropdown button for buildings -->
+        <div class="dropdown">
+            <button class="taskbar-button dropdown-btn">Buildings</button>
+            <div class="dropdown-content" id = "dropdown-content">
+                
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
